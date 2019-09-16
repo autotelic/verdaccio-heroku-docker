@@ -1,0 +1,20 @@
+storage: ./storage
+auth:
+  github-oauth-ui:
+    org: GITHUB_OAUTH_ORG
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+packages:
+  '@*/*':
+    access: $authenticated
+    publish: $authenticated
+    proxy: npmjs
+  '**':
+    proxy: npmjs
+logs:
+  - {type: stdout, format: pretty, level: http}
+middlewares:
+  github-oauth-ui:
+    client-id: GITHUB_OAUTH_CLIENT_ID
+    client-secret: GITHUB_OAUTH_CLIENT_SECRET
